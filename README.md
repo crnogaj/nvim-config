@@ -7,7 +7,7 @@ For more info on NvChad config, keymaps, themes or plugins visit https://github.
 2. Install neovim version >= 0.10
 3. Install ripgrep - https://github.com/BurntSushi/ripgrep  
    `sudo apt install ripgrep`
-4. Delete old neovim folders if any (same when uninstalling)
+4. Delete old neovim folders if any (same when uninstalling)  
    `rm -rf ~/.config/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.local/share/nvim`
 6. Clone this repo
    `git clone https://github.com/crnogaj/nvim-config ~/.config/nvim`
