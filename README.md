@@ -1,5 +1,6 @@
 # nvim-config
-my nvim config based on NvChad
+My nvim config based on NvChad  
+For more info on NvChad config, keymaps, themes or plugins visit https://github.com/NvChad/NvChad 
 
 ## Requirements
 1. Install Nerd font - https://www.nerdfonts.com/font-downloads
