@@ -57,7 +57,8 @@ Commands below end up in visual mode
 `i Ctrl+k` - up
 
 ### Replace
-`n cgw` - replace word under cursor in whole file (prompt)
+`n cgw` - replace word under cursor in whole file (prompt)  
+`n Ctrl+d` - multiple cursors (https://github.com/mg979/vim-visual-multi)
 
 ### Search
 `n <leader>ff` - find files in current root  
