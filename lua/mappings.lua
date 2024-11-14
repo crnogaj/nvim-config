@@ -7,54 +7,38 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
--- Exit to normal from insert mode
-map("i", "jk", "<ESC>")
+map("i", "jk", "<ESC>", { desc = "Exit to normal from insert mode"})
 
--- Select all
-map("n", "<C-a>", "ggVG")
+map("n", "<C-a>", "ggVG", { desc = "Select all"})
 
--- Replace word
--- map("n", "<leader>r", "ciw")
+map({ "n", "v" }, "<C-c>", '"+y', { desc = "Copy to clipboard"})
 
--- Copy to clipboard
-map("n", "<leader>y", '"+y')
-map("v", "<leader>y", '"+y')
+map({ "n", "v" }, "<C-x>", '"+d', { desc = "Cut to clipboard"})
 
--- Cut to clipboard
-map("n", "<leader>d", '"+d')
-map("v", "<leader>d", '"+d')
+map({ "n", "v" }, "<C-v>", '"+p', { desc = "Paste from clipboard"})
 
--- Move up/down by one screen
--- map("n", "<C-M-j>", "<C-f>")  -- Scroll down by one screen
--- map("n", "<C-M-k>", "<C-b>")  -- Scroll up by one screen
+map("n", "<M-j>", "10j", { desc = "Move down by 10 lines"})
+map("n", "<M-k>", "10k", { desc = "Move up by 10 lines"})
 
--- Move 10 lines up/down
-map("n", "<M-j>", "10j") -- Move down by 10 lines
-map("n", "<M-k>", "10k") -- Move up by 10 lines
+map("n", "<C-M-k>", ":m .-2<CR>==", { desc = "Move line up"})
+map("v", "<C-M-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up"})
+map("i", "<C-M-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up"})
 
--- Move line up
-map("n", "<C-M-k>", ":m .-2<CR>==")
-map("v", "<C-M-k>", ":m '<-2<CR>gv=gv")
-map("i", "<C-M-k>", "<Esc>:m .-2<CR>==gi")
+map("n", "<C-M-j>", ":m .+1<CR>==", { desc = "Move line down"})
+map("v", "<C-M-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down"})
+map("i", "<C-M-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down"})
 
--- Move line down
-map("n", "<C-M-j>", ":m .+1<CR>==")
-map("v", "<C-M-j>", ":m '>+1<CR>gv=gv")
-map("i", "<C-M-j>", "<Esc>:m .+1<CR>==gi")
 
--- Enable Shift + lhkj for visual selection in normal mode
-map("n", "L", "v<Right>")
-map("n", "H", "v<Left>")
-map("n", "K", "v<Up>")
-map("n", "J", "v<Down>")
+map("n", "L", "v<Right>", { desc = "Enable Shift+l for visual selection in normal mode"})
+map("n", "H", "v<Left>", { desc = "Enable Shift+h for visual selection in normal mode"})
+map("n", "K", "v<Up>", { desc = "Enable Shift+k for visual selection in normal mode"})
+map("n", "J", "v<Down>", { desc = "Enable Shift+j for visual selection in normal mode"})
 
--- Continue selection in visual mode with Shift + lhkj
-map("v", "L", "<Right>")
-map("v", "H", "<Left>")
-map("v", "K", "<Up>")
-map("v", "J", "<Down>")
+map("v", "L", "<Right>", { desc = "Continue selection in visual mode with Shift+l"})
+map("v", "H", "<Left>", { desc = "Continue selection in visual mode with Shift+h"})
+map("v", "K", "<Up>", { desc = "Continue selection in visual mode with Shift+k"})
+map("v", "J", "<Down>", { desc = "Continue selection in visual mode with Shift+j"})
 
--- Global replace of word under cursor
 map("n", "cgw", function()
   -- Get the word under the cursor
   local word = vim.fn.expand "<cword>"
@@ -69,7 +53,7 @@ map("n", "cgw", function()
 
   -- Run the substitution command using the word and replacement
   vim.cmd(":%s/\\<" .. word .. "\\>/" .. replacement .. "/g")
-end)
+end, { desc = "Global replace of word under cursor"})
 
 vim.cmd [[
   command! Q q
