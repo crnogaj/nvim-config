@@ -12,8 +12,8 @@ my nvim config based on NvChad
    rm -rf ~/.local/state/nvim
    rm -rf ~/.local/share/nvim
    ```
-6. Install NvChad - https://github.com/NvChad/NvChad  
-   `git clone https://github.com/NvChad/starter ~/.config/nvim`
+6. Clone this repo
+   `git clone https://github.com/crnogaj/nvim-config ~/.config/nvim`
 7. Run `:MasonInstallAll` command after lazy.nvim finishes downloading plugins.
 
 ## Keymaps
