@@ -1,5 +1,5 @@
 # nvim-config
-My neovim config
+my nvim config based on NvChad
 
 ## Requirements
 1. Install Nerd font - https://www.nerdfonts.com/font-downloads
