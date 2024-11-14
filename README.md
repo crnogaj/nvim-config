@@ -8,11 +8,7 @@ For more info on NvChad config, keymaps, themes or plugins visit https://github.
 3. Install ripgrep - https://github.com/BurntSushi/ripgrep  
    `sudo apt install ripgrep`
 4. Delete old neovim folders if any (same when uninstalling)
-   ```
-   rm -rf ~/.config/nvim
-   rm -rf ~/.local/state/nvim
-   rm -rf ~/.local/share/nvim
-   ```
+   `rm -rf ~/.config/nvim && rm -rf ~/.local/state/nvim && rm -rf ~/.local/share/nvim`
 6. Clone this repo
    `git clone https://github.com/crnogaj/nvim-config ~/.config/nvim`
 7. Run `:MasonInstallAll` command after lazy.nvim finishes downloading plugins.
