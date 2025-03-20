@@ -17,17 +17,16 @@ map({ "n", "v" }, "<C-x>", '"+d', { desc = "Cut to clipboard"})
 
 map({ "n", "v" }, "<C-v>", '"+p', { desc = "Paste from clipboard"})
 
-map("n", "<M-j>", "10j", { desc = "Move down by 10 lines"})
-map("n", "<M-k>", "10k", { desc = "Move up by 10 lines"})
+map("n", "<Tab>", "10j", { desc = "Move down by 10 lines"})
+map("n", "<S-Tab>", "10k", { desc = "Move up by 10 lines"})
 
-map("n", "<C-M-k>", ":m .-2<CR>==", { desc = "Move line up"})
-map("v", "<C-M-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up"})
-map("i", "<C-M-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up"})
+map("n", "<C-k>", ":m .-2<CR>==", { desc = "Move line up"})
+map("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up"})
+map("i", "<C-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up"})
 
-map("n", "<C-M-j>", ":m .+1<CR>==", { desc = "Move line down"})
-map("v", "<C-M-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down"})
-map("i", "<C-M-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down"})
-
+map("n", "<C-j>", ":m .+1<CR>==", { desc = "Move line down"})
+map("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down"})
+map("i", "<C-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down"})
 
 map("n", "L", "v<Right>", { desc = "Enable Shift+l for visual selection in normal mode"})
 map("n", "H", "v<Left>", { desc = "Enable Shift+h for visual selection in normal mode"})
