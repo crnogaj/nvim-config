@@ -4,7 +4,7 @@ local lspconfig = require "lspconfig"
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- Add phpactor to the list of servers
-local servers = { "html", "cssls", "eslint", "vuels", "gopls", "phpactor" }
+local servers = { "html", "cssls", "eslint", "gopls", "phpactor" }
 
 -- Define a common on_attach function
 local function common_on_attach(client, bufnr)

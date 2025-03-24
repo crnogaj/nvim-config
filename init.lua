@@ -9,6 +9,16 @@ if not vim.uv.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = "→ ",
+  trail = "·",
+  space = "·",
+  extends = "⟩",
+  precedes = "⟨",
+  nbsp = "␣"
+}
+vim.opt.relativenumber = true
 
 local lazy_config = require "configs.lazy"
 

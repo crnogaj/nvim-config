@@ -40,10 +40,6 @@ Commands below end up in visual mode
 `n Ctrl+s` - save file
 
 ### Move
-`nvi Ctrl+Alt+k` - move line up  
-`nvi Ctrl+Alt+j` - move line down  
-`n Alt+k` - scroll 10 lines up  
-`n Alt+j` - scroll 10 lines down  
 `n Ctrl+b` - scroll up by one screen  
 `n Ctrl+f` - scroll down by one screen  
 `i Ctrl+b` - go to beginning of line  
