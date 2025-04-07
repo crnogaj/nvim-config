@@ -15,14 +15,6 @@ map({ "n", "v" }, "<C-c>", '"+y', { desc = "Copy to clipboard"})
 map({ "n", "v" }, "<C-x>", '"+d', { desc = "Cut to clipboard"})
 map({ "n", "v" }, "<C-v>", '"+p', { desc = "Paste from clipboard"})
 
-map("n", "<C-k>", ":m .-2<CR>==", { desc = "Move line up"})
-map("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up"})
-map("i", "<C-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up"})
-
-map("n", "<C-j>", ":m .+1<CR>==", { desc = "Move line down"})
-map("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down"})
-map("i", "<C-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down"})
-
 map("n", "L", "v<Right>", { desc = "Enable Shift+l for visual selection in normal mode"})
 map("n", "H", "v<Left>", { desc = "Enable Shift+h for visual selection in normal mode"})
 map("n", "K", "v<Up>", { desc = "Enable Shift+k for visual selection in normal mode"})
@@ -47,7 +39,7 @@ map("n", "cgw", function()
 
   -- Run the substitution command using the word and replacement
   vim.cmd(":%s/\\<" .. word .. "\\>/" .. replacement .. "/g")
-end, { desc = "Global replace of word under cursor"})
+end, { desc = "Replace all occurences of word under cursor in current file"})
 
 vim.cmd [[
   command! Q q
@@ -57,4 +49,5 @@ vim.cmd [[
   command! Wq wq
   command! WQ wq
   command! X x
+  command! Ra Qfreplace
 ]]

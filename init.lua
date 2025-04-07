@@ -9,7 +9,7 @@ if not vim.uv.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = {
   tab = "→ ",
   trail = "·",
