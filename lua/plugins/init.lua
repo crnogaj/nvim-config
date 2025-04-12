@@ -1,5 +1,3 @@
-local cmp_conf = require("configs.cmp")
-
 return {
   {
     "stevearc/conform.nvim",
