@@ -3,6 +3,19 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
+    php = { "php-cs-fixer" },
+  },
+
+  formatters = {
+    ["php-cs-fixer"] = {
+      command = "php-cs-fixer",
+      args = {
+        "fix",
+        "--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
+        "$FILENAME",
+      },
+      stdin = false,
+    },
   },
 
   format_on_save = {
@@ -10,6 +23,8 @@ local options = {
     timeout_ms = 500,
     lsp_fallback = true,
   },
+
+  notify_on_error = true,
 }
 
 return options
