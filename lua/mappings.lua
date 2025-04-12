@@ -25,6 +25,8 @@ map("v", "H", "<Left>", { desc = "Continue selection in visual mode with Shift+h
 map("v", "K", "<Up>", { desc = "Continue selection in visual mode with Shift+k"})
 map("v", "J", "<Down>", { desc = "Continue selection in visual mode with Shift+j"})
 
+map("n", "<leader>fr", "<cmd>Telescope resume<CR>", { desc = "telescope resume last" })
+
 map("n", "cgw", function()
   -- Get the word under the cursor
   local word = vim.fn.expand "<cword>"
