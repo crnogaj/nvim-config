@@ -4,12 +4,14 @@ local lspconfig = require "lspconfig"
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- Add phpactor to the list of servers
-local servers = { "html", "cssls", "eslint", "gopls", "phpactor" }
+local servers = { "html", "cssls", "eslint", "gopls", "intelephense", "elixirls" }
 
 -- Define a common on_attach function
 local function common_on_attach(client, bufnr)
   -- Keybindings for LSP actions
-  local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local buf_set_keymap = function(...)
+    vim.api.nvim_buf_set_keymap(bufnr, ...)
+  end
   local opts = { noremap = true, silent = true }
 
   buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -36,7 +38,7 @@ for _, lsp in ipairs(servers) do
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = bufnr,
           callback = function()
-            vim.lsp.buf.format({ async = false })
+            vim.lsp.buf.format { async = false }
           end,
         })
       end
@@ -63,34 +65,26 @@ for _, lsp in ipairs(servers) do
       })
     end
 
-    if lsp == "phpactor" then
-      -- Example: Format PHP files on save (if supported by phpactor)
-      if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.format({ async = false })
-          end,
-        })
-      end
-    end
-
     if lsp == "html" or lsp == "cssls" then
       vim.api.nvim_create_autocmd("BufWritePre", {
         pattern = { "*.html", "*.css" },
-        callback = function ()
-          vim.lsp.buf.format({ async = false })
-        end
+        callback = function()
+          vim.lsp.buf.format { async = false }
+        end,
       })
     end
   end
 
-  -- LSP-specific setup
-  lspconfig[lsp].setup {
+  -- General LSP setup
+  local config = {
     on_attach = on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
-    settings = (lsp == "gopls") and {
+  }
+
+  -- Server-specific settings
+  if lsp == "gopls" then
+    config.settings = {
       gopls = {
         gofumpt = true,
         analyses = {
@@ -101,32 +95,50 @@ for _, lsp in ipairs(servers) do
         },
         staticcheck = true,
       },
-    } or (lsp == "phpactor") and {
-      phpactor = {
-        indexer = {
-          enabled = true,
-          include = { "src", "app" }, -- Customize these paths for your project
-          exclude = { "vendor", "node_modules" },
+    }
+  elseif lsp == "elixirls" then
+    config.cmd = { vim.fn.expand "~/.elixir-ls/release/language_server.sh" }
+    config.settings = {
+      elixirLS = {
+        dialyzerEnabled = false,
+        fetchDeps = false,
+      },
+    }
+    config.on_new_config = function(new_config, _)
+      local asdf_shims = vim.fn.expand "~/.asdf/shims"
+      local asdf_bin = vim.fn.expand "~/.asdf/bin"
+      new_config.cmd_env = {
+        PATH = asdf_shims .. ":" .. asdf_bin .. ":" .. os.getenv "PATH",
+      }
+    end
+  elseif lsp == "intelephense" then
+    config.settings = {
+      intelephense = {
+        diagnostics = {
+          enable = true,
+        },
+        files = {
+          maxSize = 1000000,
         },
       },
-    } or (lsp == "html") and {
+    }
+  elseif lsp == "html" then
+    config.settings = {
       html = {
         format = {
           wrapLineLength = 120,
           unformatted = "pre,code,textarea",
         },
       },
-    } or (lsp == "cssls") and {
-      css = {
-        validate = true,
-      },
-      scss = {
-        validate = true,
-      },
-      less = {
-        validate = true,
-      },
-    } or nil,
-  }
-end
+    }
+  elseif lsp == "cssls" then
+    config.settings = {
+      css = { validate = true },
+      scss = { validate = true },
+      less = { validate = true },
+    }
+  end
 
+  -- Setup the LSP
+  lspconfig[lsp].setup(config)
+end
