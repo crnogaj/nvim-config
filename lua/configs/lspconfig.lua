@@ -112,6 +112,10 @@ for _, lsp in ipairs(servers) do
       }
     end
   elseif lsp == "intelephense" then
+    config.init_options = {
+      storagePath = vim.fn.stdpath "cache" .. "/intelephense",
+    }
+
     config.settings = {
       intelephense = {
         diagnostics = {
@@ -119,6 +123,11 @@ for _, lsp in ipairs(servers) do
         },
         files = {
           maxSize = 1000000,
+        },
+        environment = {
+          includePaths = {
+            "/home/jakob/.config/composer/vendor/jetbrains/phpstorm-stubs",
+          },
         },
       },
     }
